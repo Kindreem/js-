@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>网页换肤</title>
+	<style>
+	    body{
+	      background:#A3C5A8;}
+	    body{font:12px/1.5 Tahoma;}
+	    div{
+	    	width: 500px;
+            margin: 0 auto;
+	    }
+		#nav{
+		   border:1px solid #fff;
+		   background: green;
+		}
+		ul{list-style-type:none;
+
+		}
+		ul,li{
+            float: left;//li使用float:left使其横向显示,做导航菜单。ul使用使两个列表向左浮动对齐。
+            margin: 0;
+            padding: 0;
+
+		}
+		#skin{margin:10px 0;}
+		#skin li{
+			width:6px;
+			height:6px;
+			cursor:pointer;
+			margin-right:10px;
+			border-width:3px;
+			border-style:solid;}
+		#nav li{
+			   width:82px;
+			   line-height:25px;
+			   text-align: center;
+			   border-right:1px solid #fff;
+		}
+		#nav li:last-child{width:83px;border-right-width:0;}
+		a{
+			color:#fff;
+		}
+		#skin li.current{background: #fff;}	
+		a:link,a:visited{text-decoration: none;}
+        a:hover{text-decoration: underline;}
+        #red{border-color:red;background:red;}
+        #green{border-color:green;background:green;}
+        #black{border-color:black;background:black;}
+	</style>
+    <link href="2.css" rel="stylesheet" type="text/css" id="css" />
+</head>
+<body>
+	<div>
+     <ul id="skin">
+     	<li id="red" title="红色"></li>
+     	<li id="green" title="绿色" class="current"></li>
+     	<li id="black" title="黑色"></li>
+     </ul>
+     
+       <ul id="nav">
+     	<li><a href="javascript">新闻</a></li>
+     	<li><a href="javascript">娱乐</a></li>
+     	<li><a href="javascript">体育</a></li>
+     	<li><a href="javascript">电影</a></li>
+     	<li><a href="javascript">音乐</a></li>
+     	<li><a href="javascript">旅游</a></li>
+       </ul>	
+    </div> 
+    <script>
+    
+	var oLink = document.getElementsByTagName("link")[0];
+	var oSkin = document.getElementById("skin").getElementsByTagName("li");
+	
+	for(var i = 0; i< oSkin.length; i++)
+	{		
+		oSkin[i].onclick = function ()
+		{
+			for(var p = 0; p< oSkin.length; p++) {oSkin[p].className = "";}//原代码for(var p in oSkin) oSkin[p].className = "";作者for后面忘记加{}，用此处是在每次点击时再一次循环列表清除属性classname，但用for in循环数组不太合适，问题较多且不易理解，所以改正。
+            //另外可以用<link href="css1.css" rel="stylesheet" type="text/css" id="css"/>更改外联css文件，但此处不合适用这种方法，因为样式文件有三个。
+            
+function changeStyle4() {
+   var obj = document.getElementById("css");
+   obj.setAttribute("href","css2.css");
+ }
+			this.className = "current";
+			oLink['href'] = this.id + ".css";	//this此处指向绑定事件			
+		}	
+	}
+	
+    	      
+    </script>
+</body>
+</html>
